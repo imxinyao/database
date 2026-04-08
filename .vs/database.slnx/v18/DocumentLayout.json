@@ -1,21 +1,21 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\database\\",
+  "WorkspaceRootPath": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|c:\\users\\administrator.desktop-1k1hc8u\\desktop\\database\\database\\controllers\\transactionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|c:\\users\\administrator.desktop-1k1hc8u\\desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\controllers\\transactionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|solutionrelative:database\\controllers\\transactionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|c:\\users\\administrator.desktop-1k1hc8u\\desktop\\database\\database\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|solutionrelative:database\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|c:\\users\\administrator.desktop-1k1hc8u\\desktop\\database\\database\\dtos\\importdemoresultdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|c:\\users\\administrator.desktop-1k1hc8u\\desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\dtos\\importdemoresultdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|solutionrelative:database\\dtos\\importdemoresultdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|c:\\users\\administrator.desktop-1k1hc8u\\desktop\\database\\database\\models\\tickettransaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|c:\\users\\administrator.desktop-1k1hc8u\\desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|solutionrelative:database\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|c:\\users\\administrator.desktop-1k1hc8u\\desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\models\\tickettransaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|solutionrelative:database\\models\\tickettransaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -36,34 +36,35 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "TransactionsController.cs",
-              "DocumentMoniker": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\database\\database\\Controllers\\TransactionsController.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\Controllers\\TransactionsController.cs",
               "RelativeDocumentMoniker": "database\\Controllers\\TransactionsController.cs",
-              "ToolTip": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\database\\database\\Controllers\\TransactionsController.cs",
+              "ToolTip": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\Controllers\\TransactionsController.cs",
               "RelativeToolTip": "database\\Controllers\\TransactionsController.cs",
-              "ViewState": "AgIAAIcAAAAAAAAAAAAgwJYAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAJAAAAAAAAAAAAAgwI8AAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-07T07:28:03.229Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "ImportDemoResultDto.cs",
-              "DocumentMoniker": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\database\\database\\DTOs\\ImportDemoResultDto.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\DTOs\\ImportDemoResultDto.cs",
               "RelativeDocumentMoniker": "database\\DTOs\\ImportDemoResultDto.cs",
-              "ToolTip": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\database\\database\\DTOs\\ImportDemoResultDto.cs",
+              "ToolTip": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\DTOs\\ImportDemoResultDto.cs",
               "RelativeToolTip": "database\\DTOs\\ImportDemoResultDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-07T07:27:42.411Z"
+              "WhenOpened": "2026-04-07T07:27:42.411Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\database\\database\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\Program.cs",
               "RelativeDocumentMoniker": "database\\Program.cs",
-              "ToolTip": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\database\\database\\Program.cs",
+              "ToolTip": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\Program.cs",
               "RelativeToolTip": "database\\Program.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAAiwBgAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -73,9 +74,9 @@
               "$type": "Document",
               "DocumentIndex": 3,
               "Title": "TicketTransaction.cs",
-              "DocumentMoniker": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\database\\database\\Models\\TicketTransaction.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\Models\\TicketTransaction.cs",
               "RelativeDocumentMoniker": "database\\Models\\TicketTransaction.cs",
-              "ToolTip": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\database\\database\\Models\\TicketTransaction.cs",
+              "ToolTip": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\Models\\TicketTransaction.cs",
               "RelativeToolTip": "database\\Models\\TicketTransaction.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAAAgwB8AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",

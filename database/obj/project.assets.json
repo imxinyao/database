@@ -3200,11 +3200,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\database\\database\\database.csproj",
+      "projectUniqueName": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\票务清分系统\\database\\database\\database.csproj",
       "projectName": "database",
-      "projectPath": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\database\\database\\database.csproj",
+      "projectPath": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\票务清分系统\\database\\database\\database.csproj",
       "packagesPath": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\database\\database\\obj\\",
+      "outputPath": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\票务清分系统\\database\\database\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
