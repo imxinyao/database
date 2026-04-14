@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using database.Models;
 
 namespace database.Data
@@ -14,6 +14,8 @@ namespace database.Data
         public DbSet<StationInfo> StationInfos { get; set; }
         public DbSet<SectionInfo> SectionInfos { get; set; }
         public DbSet<TicketTransaction> TicketTransactions { get; set; }
+        public DbSet<TrainTimetable> TrainTimetables { get; set; }
+        public DbSet<TrainTimetableDetail> TrainTimetableDetails { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -181,6 +183,43 @@ namespace database.Data
 
                 entity.Property(e => e.CreatedAt)
                       .HasColumnName("created_at");
+            });
+            modelBuilder.Entity<TrainTimetable>(entity =>
+            {
+                entity.ToTable("train_timetable");
+                entity.HasKey(e => e.TimetableId);
+
+                entity.Property(e => e.TimetableId).HasColumnName("timetable_id");
+                entity.Property(e => e.TimetableCode).HasColumnName("timetable_code").HasMaxLength(50).IsRequired();
+                entity.Property(e => e.TimetableName).HasColumnName("timetable_name").HasMaxLength(100).IsRequired();
+                entity.Property(e => e.LineId).HasColumnName("line_id");
+                entity.Property(e => e.Direction).HasColumnName("direction");
+                entity.Property(e => e.VersionNo).HasColumnName("version_no").HasMaxLength(20).IsRequired();
+                entity.Property(e => e.EffectiveStartDate).HasColumnName("effective_start_date");
+                entity.Property(e => e.EffectiveEndDate).HasColumnName("effective_end_date");
+                entity.Property(e => e.RunCalendarType).HasColumnName("run_calendar_type").HasMaxLength(20);
+                entity.Property(e => e.Status).HasColumnName("status");
+                entity.Property(e => e.IsActive).HasColumnName("is_active");
+                entity.Property(e => e.Remark).HasColumnName("remark").HasMaxLength(255);
+                entity.Property(e => e.CreatedAt).HasColumnName("created_at");
+                entity.Property(e => e.UpdatedAt).HasColumnName("updated_at");
+            });
+            modelBuilder.Entity<TrainTimetableDetail>(entity =>
+            {
+                entity.ToTable("train_timetable_detail");
+                entity.HasKey(e => e.DetailId);
+
+                entity.Property(e => e.DetailId).HasColumnName("detail_id");
+                entity.Property(e => e.TimetableId).HasColumnName("timetable_id");
+                entity.Property(e => e.TrainNo).HasColumnName("train_no").HasMaxLength(50).IsRequired();
+                entity.Property(e => e.StationId).HasColumnName("station_id");
+                entity.Property(e => e.StationSeq).HasColumnName("station_seq");
+                entity.Property(e => e.ArrivalTime).HasColumnName("arrival_time");
+                entity.Property(e => e.DepartureTime).HasColumnName("departure_time");
+                entity.Property(e => e.StopMinutes).HasColumnName("stop_minutes");
+                entity.Property(e => e.IsOriginStation).HasColumnName("is_origin_station");
+                entity.Property(e => e.IsTerminalStation).HasColumnName("is_terminal_station");
+                entity.Property(e => e.CreatedAt).HasColumnName("created_at");
             });
         }
     }
