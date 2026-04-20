@@ -5,6 +5,18 @@
     "version": "1.0"
   },
   "paths": {
+    "/api/Lines/topology": {
+      "get": {
+        "tags": [
+          "Lines"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Timetables": {
       "get": {
         "tags": [
@@ -80,6 +92,96 @@
         }
       }
     },
+    "/api/Timetables/import": {
+      "post": {
+        "tags": [
+          "Timetables"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "TimetableCode": {
+                    "type": "string"
+                  },
+                  "TimetableName": {
+                    "type": "string"
+                  },
+                  "LineId": {
+                    "type": "integer",
+                    "format": "int64"
+                  },
+                  "Direction": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "VersionNo": {
+                    "type": "string"
+                  },
+                  "EffectiveStartDate": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "EffectiveEndDate": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "RunCalendarType": {
+                    "type": "string"
+                  },
+                  "Remark": {
+                    "type": "string"
+                  },
+                  "File": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "TimetableCode": {
+                  "style": "form"
+                },
+                "TimetableName": {
+                  "style": "form"
+                },
+                "LineId": {
+                  "style": "form"
+                },
+                "Direction": {
+                  "style": "form"
+                },
+                "VersionNo": {
+                  "style": "form"
+                },
+                "EffectiveStartDate": {
+                  "style": "form"
+                },
+                "EffectiveEndDate": {
+                  "style": "form"
+                },
+                "RunCalendarType": {
+                  "style": "form"
+                },
+                "Remark": {
+                  "style": "form"
+                },
+                "File": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Timetables/{id}/publish": {
       "post": {
         "tags": [
@@ -104,6 +206,29 @@
       }
     },
     "/api/Timetables/{id}/disable": {
+      "post": {
+        "tags": [
+          "Timetables"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Timetables/{id}/delete": {
       "post": {
         "tags": [
           "Timetables"
@@ -342,6 +467,9 @@
     }
   },
   "tags": [
+    {
+      "name": "Lines"
+    },
     {
       "name": "Timetables"
     },
