@@ -29,7 +29,7 @@ namespace database.Controllers
                 from t in _context.TrainTimetables.AsNoTracking()
                 join l in _context.LineInfos.AsNoTracking()
                     on t.LineId equals l.LineId
-                orderby t.LineId, t.Direction, t.VersionNo
+                orderby t.TimetableId
                 select new
                 {
                     timetableId = t.TimetableId,
@@ -313,7 +313,7 @@ namespace database.Controllers
                 {
                     success = false,
                     message = "导入失败",
-                    error = ex.Message
+                    error = ex.ToString()
                 });
             }
         }

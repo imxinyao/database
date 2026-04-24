@@ -3,20 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|c:\\users\\administrator.desktop-1k1hc8u\\desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\controllers\\timetablescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|solutionrelative:database\\controllers\\timetablescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|c:\\users\\administrator.desktop-1k1hc8u\\desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\dtos\\timetableimportrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|solutionrelative:database\\dtos\\timetableimportrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|c:\\users\\administrator.desktop-1k1hc8u\\desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\controllers\\linescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|solutionrelative:database\\controllers\\linescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|c:\\users\\administrator.desktop-1k1hc8u\\desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\controllers\\timetablescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|solutionrelative:database\\controllers\\timetablescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|c:\\users\\administrator.desktop-1k1hc8u\\desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\data\\metrodbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|solutionrelative:database\\data\\metrodbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|c:\\users\\administrator.desktop-1k1hc8u\\desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\models\\traintimetabledetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|solutionrelative:database\\models\\traintimetabledetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|c:\\users\\administrator.desktop-1k1hc8u\\desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\models\\traintimetable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|solutionrelative:database\\models\\traintimetable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|c:\\users\\administrator.desktop-1k1hc8u\\desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\dtos\\timetableimportrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|solutionrelative:database\\dtos\\timetableimportrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,52 +42,76 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
+              "Title": "TrainTimetableDetail.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\Models\\TrainTimetableDetail.cs",
+              "RelativeDocumentMoniker": "database\\Models\\TrainTimetableDetail.cs",
+              "ToolTip": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\Models\\TrainTimetableDetail.cs",
+              "RelativeToolTip": "database\\Models\\TrainTimetableDetail.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAswCEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-22T12:30:00.901Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TrainTimetable.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\Models\\TrainTimetable.cs",
+              "RelativeDocumentMoniker": "database\\Models\\TrainTimetable.cs",
+              "ToolTip": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\Models\\TrainTimetable.cs",
+              "RelativeToolTip": "database\\Models\\TrainTimetable.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAADwvycAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-22T12:29:34.901Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "TimetableImportRequest.cs",
               "DocumentMoniker": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\DTOs\\TimetableImportRequest.cs",
               "RelativeDocumentMoniker": "database\\DTOs\\TimetableImportRequest.cs",
               "ToolTip": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\DTOs\\TimetableImportRequest.cs",
               "RelativeToolTip": "database\\DTOs\\TimetableImportRequest.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-15T12:35:01.427Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "MetroDbContext.cs",
               "DocumentMoniker": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\Data\\MetroDbContext.cs",
               "RelativeDocumentMoniker": "database\\Data\\MetroDbContext.cs",
               "ToolTip": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\Data\\MetroDbContext.cs",
               "RelativeToolTip": "database\\Data\\MetroDbContext.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABEAAAAuAAAAAAAAAA==",
+              "ViewState": "AgIAABoBAAAAAAAAAAAiwCcBAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-15T11:58:03.998Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "LinesController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\Controllers\\LinesController.cs",
               "RelativeDocumentMoniker": "database\\Controllers\\LinesController.cs",
               "ToolTip": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\Controllers\\LinesController.cs",
               "RelativeToolTip": "database\\Controllers\\LinesController.cs",
-              "ViewState": "AgIAAG4AAAAAAAAAAAAiwHwAAAAeAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHwAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-15T11:57:27.998Z"
+              "WhenOpened": "2026-04-15T11:57:27.998Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "TimetablesController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\Controllers\\TimetablesController.cs",
               "RelativeDocumentMoniker": "database\\Controllers\\TimetablesController.cs",
               "ToolTip": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\Controllers\\TimetablesController.cs",
               "RelativeToolTip": "database\\Controllers\\TimetablesController.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAowDgAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAD8BAAAAAAAAAAApwDwBAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-14T11:56:56.541Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-14T11:56:56.541Z"
             }
           ]
         }

@@ -26,5 +26,9 @@ namespace database.Models
         public int IsTerminalStation { get; set; } = 0;
 
         public DateTime CreatedAt { get; set; } = DateTime.Now;
+
+        public TrainTimetable? Timetable { get; set; }
+
+        public StationInfo? Station { get; set; }
     }
 }
