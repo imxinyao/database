@@ -1,5 +1,51 @@
 [
   {
+    "ContainingType": "database.Controllers.ClearingController",
+    "Method": "GetLatestResult",
+    "RelativePath": "api/Clearing/latest",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "database.Controllers.ClearingController",
+    "Method": "GetRules",
+    "RelativePath": "api/Clearing/rules",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "database.Controllers.ClearingController",
+    "Method": "SaveRules",
+    "RelativePath": "api/Clearing/rules",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "database.Controllers.ClearingController\u002BSaveClearingRulesRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "database.Controllers.ClearingController",
+    "Method": "RunClearing",
+    "RelativePath": "api/Clearing/run",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "database.Controllers.LinesController",
     "Method": "GetLineTopology",
     "RelativePath": "api/Lines/topology",
@@ -175,26 +221,6 @@
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.IEnumerable\u00601[[database.DTOs.TransactionListItemDto, database, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "database.Controllers.TransactionsController",
-    "Method": "ImportDemoData",
-    "RelativePath": "api/Transactions/import-demo",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "database.DTOs.ImportDemoResultDto",
         "MediaTypes": [
           "text/plain",
           "application/json",

@@ -5,6 +5,71 @@
     "version": "1.0"
   },
   "paths": {
+    "/api/Clearing/rules": {
+      "get": {
+        "tags": [
+          "Clearing"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Clearing"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SaveClearingRulesRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SaveClearingRulesRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SaveClearingRulesRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Clearing/run": {
+      "post": {
+        "tags": [
+          "Clearing"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Clearing/latest": {
+      "get": {
+        "tags": [
+          "Clearing"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Lines/topology": {
       "get": {
         "tags": [
@@ -289,35 +354,6 @@
         }
       }
     },
-    "/api/Transactions/import-demo": {
-      "post": {
-        "tags": [
-          "Transactions"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ImportDemoResultDto"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ImportDemoResultDto"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ImportDemoResultDto"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/WeatherForecast": {
       "get": {
         "tags": [
@@ -360,35 +396,16 @@
   },
   "components": {
     "schemas": {
-      "ImportDemoResultDto": {
+      "SaveClearingRulesRequest": {
         "type": "object",
         "properties": {
-          "success": {
-            "type": "boolean"
-          },
-          "message": {
+          "clearingMode": {
             "type": "string",
             "nullable": true
           },
-          "operatorCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "lineCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "stationCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "sectionCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "transactionCount": {
-            "type": "integer",
-            "format": "int32"
+          "transferCoefficient": {
+            "type": "number",
+            "format": "double"
           }
         },
         "additionalProperties": false
@@ -467,6 +484,9 @@
     }
   },
   "tags": [
+    {
+      "name": "Clearing"
+    },
     {
       "name": "Lines"
     },

@@ -16,6 +16,9 @@ namespace database.Data
         public DbSet<TicketTransaction> TicketTransactions { get; set; }
         public DbSet<TrainTimetable> TrainTimetables { get; set; }
         public DbSet<TrainTimetableDetail> TrainTimetableDetails { get; set; }
+        public DbSet<ClearingRule> ClearingRules { get; set; }
+        public DbSet<ClearingTask> ClearingTasks { get; set; }
+        public DbSet<ClearingResult> ClearingResults { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -299,6 +302,160 @@ namespace database.Data
                 entity.HasOne(e => e.Station)
                       .WithMany()
                       .HasForeignKey(e => e.StationId)
+                      .OnDelete(DeleteBehavior.Restrict);
+            });
+            modelBuilder.Entity<ClearingRule>(entity =>
+            {
+                entity.ToTable("clearing_rule");
+                entity.HasKey(e => e.RuleId);
+
+                entity.Property(e => e.RuleId)
+                      .HasColumnName("rule_id")
+                      .ValueGeneratedOnAdd();
+
+                entity.Property(e => e.RuleCode)
+                      .HasColumnName("rule_code")
+                      .HasMaxLength(50)
+                      .IsRequired();
+
+                entity.Property(e => e.RuleName)
+                      .HasColumnName("rule_name")
+                      .HasMaxLength(100)
+                      .IsRequired();
+
+                entity.Property(e => e.RuleType)
+                      .HasColumnName("rule_type")
+                      .HasMaxLength(30)
+                      .IsRequired();
+
+                entity.Property(e => e.PricingMethod)
+                      .HasColumnName("pricing_method")
+                      .HasMaxLength(30);
+
+                entity.Property(e => e.StartDistance)
+                      .HasColumnName("start_distance")
+                      .HasColumnType("decimal(10,2)");
+
+                entity.Property(e => e.EndDistance)
+                      .HasColumnName("end_distance")
+                      .HasColumnType("decimal(10,2)");
+
+                entity.Property(e => e.Price)
+                      .HasColumnName("price")
+                      .HasColumnType("decimal(10,2)");
+
+                entity.Property(e => e.BaseShareRatio)
+                      .HasColumnName("base_share_ratio")
+                      .HasColumnType("decimal(10,4)");
+
+                entity.Property(e => e.TransferCoefficient)
+                      .HasColumnName("transfer_coefficient")
+                      .HasColumnType("decimal(10,4)");
+
+                entity.Property(e => e.AlgorithmType)
+                      .HasColumnName("algorithm_type")
+                      .HasMaxLength(30);
+
+                entity.Property(e => e.IsActive)
+                      .HasColumnName("is_active");
+
+                entity.Property(e => e.CreatedAt)
+                      .HasColumnName("created_at");
+
+                entity.Property(e => e.UpdatedAt)
+                      .HasColumnName("updated_at");
+            });
+            modelBuilder.Entity<ClearingTask>(entity =>
+            {
+                entity.ToTable("clearing_task");
+                entity.HasKey(e => e.TaskId);
+
+                entity.Property(e => e.TaskId)
+                      .HasColumnName("task_id")
+                      .ValueGeneratedOnAdd();
+
+                entity.Property(e => e.TaskName)
+                      .HasColumnName("task_name")
+                      .HasMaxLength(100)
+                      .IsRequired();
+
+                entity.Property(e => e.DataCount)
+                      .HasColumnName("data_count");
+
+                entity.Property(e => e.AlgorithmType)
+                      .HasColumnName("algorithm_type")
+                      .HasMaxLength(30)
+                      .IsRequired();
+
+                entity.Property(e => e.Status)
+                      .HasColumnName("status")
+                      .HasMaxLength(30)
+                      .IsRequired();
+
+                entity.Property(e => e.StartTime)
+                      .HasColumnName("start_time");
+
+                entity.Property(e => e.EndTime)
+                      .HasColumnName("end_time");
+
+                entity.Property(e => e.ErrorMessage)
+                      .HasColumnName("error_message")
+                      .HasMaxLength(500);
+
+                entity.Property(e => e.CreatedAt)
+                      .HasColumnName("created_at");
+            });
+            modelBuilder.Entity<ClearingResult>(entity =>
+            {
+                entity.ToTable("clearing_result");
+                entity.HasKey(e => e.ResultId);
+
+                entity.Property(e => e.ResultId)
+                      .HasColumnName("result_id")
+                      .ValueGeneratedOnAdd();
+
+                entity.Property(e => e.TaskId)
+                      .HasColumnName("task_id");
+
+                entity.Property(e => e.TransactionId)
+                      .HasColumnName("transaction_id");
+
+                entity.Property(e => e.LineId)
+                      .HasColumnName("line_id");
+
+                entity.Property(e => e.OperatorId)
+                      .HasColumnName("operator_id");
+
+                entity.Property(e => e.ClearingAmount)
+                      .HasColumnName("clearing_amount")
+                      .HasColumnType("decimal(10,2)");
+
+                entity.Property(e => e.PathText)
+                      .HasColumnName("path_text")
+                      .HasMaxLength(500);
+
+                entity.Property(e => e.TransferText)
+                      .HasColumnName("transfer_text")
+                      .HasMaxLength(200);
+
+                entity.Property(e => e.PathGroup)
+                      .HasColumnName("path_group")
+                      .HasMaxLength(50);
+
+                entity.Property(e => e.CreatedAt)
+                      .HasColumnName("created_at");
+
+                entity.HasOne(e => e.Line)
+                      .WithMany()
+                      .HasForeignKey(e => e.LineId)
+                      .OnDelete(DeleteBehavior.Restrict);
+                entity.HasOne(e => e.Task)
+                      .WithMany()
+                      .HasForeignKey(e => e.TaskId)
+                      .OnDelete(DeleteBehavior.Restrict);
+                entity.HasOne(e => e.Transaction)
+                      .WithMany()
+                      .HasForeignKey(e => e.TransactionId)
                       .OnDelete(DeleteBehavior.Restrict);
             });
         }

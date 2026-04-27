@@ -1,9 +1,11 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace database.Models
 {
     public class ClearingTask
     {
+        [Key]
         public int TaskId { get; set; }
         public string TaskName { get; set; } = string.Empty;
         public int DataCount { get; set; }
@@ -12,6 +14,6 @@ namespace database.Models
         public DateTime StartTime { get; set; }
         public DateTime? EndTime { get; set; }
         public string? ErrorMessage { get; set; }
-        public DateTime CreatedAt { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
     }
 }
