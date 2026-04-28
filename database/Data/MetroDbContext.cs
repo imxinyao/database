@@ -19,6 +19,7 @@ namespace database.Data
         public DbSet<ClearingRule> ClearingRules { get; set; }
         public DbSet<ClearingTask> ClearingTasks { get; set; }
         public DbSet<ClearingResult> ClearingResults { get; set; }
+        public DbSet<ClearingUnmatchedTransaction> ClearingUnmatchedTransactions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -453,6 +454,61 @@ namespace database.Data
                       .WithMany()
                       .HasForeignKey(e => e.TaskId)
                       .OnDelete(DeleteBehavior.Restrict);
+                entity.HasOne(e => e.Transaction)
+                      .WithMany()
+                      .HasForeignKey(e => e.TransactionId)
+                      .OnDelete(DeleteBehavior.Restrict);
+            });
+            modelBuilder.Entity<ClearingUnmatchedTransaction>(entity =>
+            {
+                entity.ToTable("clearing_unmatched_transaction");
+                entity.HasKey(e => e.UnmatchedId);
+
+                entity.Property(e => e.UnmatchedId)
+                      .HasColumnName("unmatched_id")
+                      .ValueGeneratedOnAdd();
+
+                entity.Property(e => e.TaskId)
+                      .HasColumnName("task_id");
+
+                entity.Property(e => e.TransactionId)
+                      .HasColumnName("transaction_id");
+
+                entity.Property(e => e.CardNo)
+                      .HasColumnName("card_no")
+                      .HasMaxLength(50)
+                      .IsRequired();
+
+                entity.Property(e => e.EntryTime)
+                      .HasColumnName("entry_time");
+
+                entity.Property(e => e.EntryStationId)
+                      .HasColumnName("entry_station_id");
+
+                entity.Property(e => e.ExitTime)
+                      .HasColumnName("exit_time");
+
+                entity.Property(e => e.ExitStationId)
+                      .HasColumnName("exit_station_id");
+
+                entity.Property(e => e.ReasonCode)
+                      .HasColumnName("reason_code")
+                      .HasMaxLength(50)
+                      .IsRequired();
+
+                entity.Property(e => e.ReasonMessage)
+                      .HasColumnName("reason_message")
+                      .HasMaxLength(500)
+                      .IsRequired();
+
+                entity.Property(e => e.CreatedAt)
+                      .HasColumnName("created_at");
+
+                entity.HasOne(e => e.Task)
+                      .WithMany()
+                      .HasForeignKey(e => e.TaskId)
+                      .OnDelete(DeleteBehavior.Restrict);
+
                 entity.HasOne(e => e.Transaction)
                       .WithMany()
                       .HasForeignKey(e => e.TransactionId)

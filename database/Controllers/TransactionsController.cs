@@ -32,8 +32,13 @@ namespace database.Controllers
                 {
                     TransactionId = t.TransactionId,
                     CardNo = t.CardNo,
+
+                    EntryStationId = t.EntryStationId,
+                    ExitStationId = t.ExitStationId,
+
                     EntryStationName = entryStation != null ? entryStation.StationName : "无进站记录",
                     ExitStationName = exitStation != null ? exitStation.StationName : "无出站记录",
+
                     PayAmount = t.PayAmount,
                     TransactionStatus = t.TransactionStatus,
                     PaymentType = t.PaymentType,

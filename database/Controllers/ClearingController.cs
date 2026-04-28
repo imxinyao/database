@@ -11,6 +11,10 @@ namespace database.Controllers
     {
         private readonly MetroDbContext _context;
 
+        private const int FirstRideWaitMinutes = 30;
+        private const int TransferWaitMinutes = 45;
+        private const int ExitToleranceMinutes = 20;
+
         public ClearingController(MetroDbContext context)
         {
             _context = context;
@@ -47,18 +51,12 @@ namespace database.Controllers
 
             if (mode != "shortest" && mode != "multi")
             {
-                return BadRequest(new
-                {
-                    message = "清分模式只能是 shortest 或 multi。"
-                });
+                return BadRequest(new { message = "清分模式只能是 shortest 或 multi。" });
             }
 
             if (request.TransferCoefficient <= 0)
             {
-                return BadRequest(new
-                {
-                    message = "换乘贡献系数必须大于 0。"
-                });
+                return BadRequest(new { message = "换乘贡献系数必须大于 0。" });
             }
 
             var now = DateTime.Now;
@@ -74,7 +72,6 @@ namespace database.Controllers
                     mode,
                     StringComparison.OrdinalIgnoreCase
                 );
-
                 rule.UpdatedAt = now;
             }
 
@@ -140,40 +137,6 @@ namespace database.Controllers
                 algorithmType = "shortest";
             }
 
-            var latestSuccessTask = await _context.ClearingTasks
-                .AsNoTracking()
-                .Where(x => x.Status == "SUCCESS" && x.AlgorithmType == algorithmType)
-                .OrderByDescending(x => x.TaskId)
-                .FirstOrDefaultAsync();
-
-            var latestTransactionCreatedAt = await _context.TicketTransactions
-                .AsNoTracking()
-                .MaxAsync(x => (DateTime?)x.CreatedAt);
-
-            var latestRuleUpdatedAt = await _context.ClearingRules
-                .AsNoTracking()
-                .Where(x => x.IsActive)
-                .MaxAsync(x => (DateTime?)x.UpdatedAt);
-
-            if (latestSuccessTask != null)
-            {
-                var taskEndTime = latestSuccessTask.EndTime ?? latestSuccessTask.CreatedAt;
-
-                var transactionNotChanged =
-                    latestTransactionCreatedAt == null || latestTransactionCreatedAt <= taskEndTime;
-
-                var ruleNotChanged =
-                    latestRuleUpdatedAt == null || latestRuleUpdatedAt <= taskEndTime;
-
-                if (transactionNotChanged && ruleNotChanged)
-                {
-                    return await BuildClearingResponse(
-                        latestSuccessTask.TaskId,
-                        algorithmType,
-                        transferCoefficient
-                    );
-                }
-            }
             var task = new ClearingTask
             {
                 TaskName = $"清分任务_{DateTime.Now:yyyyMMddHHmmss}",
@@ -205,6 +168,8 @@ namespace database.Controllers
                     {
                         t.TransactionId,
                         t.CardNo,
+                        t.EntryTime,
+                        t.ExitTime,
                         t.EntryStationId,
                         t.ExitStationId,
                         EntryStationName = entryStation != null ? entryStation.StationName : "无进站记录",
@@ -229,12 +194,26 @@ namespace database.Controllers
                     .AsNoTracking()
                     .ToListAsync();
 
+                var activeTimetables = await _context.TrainTimetables
+                    .AsNoTracking()
+                    .Where(x => x.Status == 1 && x.IsActive == 1)
+                    .ToListAsync();
+
+                var activeTimetableIds = activeTimetables
+                    .Select(x => x.TimetableId)
+                    .ToList();
+
+                var timetableDetails = await _context.TrainTimetableDetails
+                    .AsNoTracking()
+                    .Where(x => activeTimetableIds.Contains(x.TimetableId))
+                    .ToListAsync();
+
                 var lineMap = lines.ToDictionary(x => x.LineId, x => x);
                 var stationMap = stations.ToDictionary(x => x.StationId, x => x);
-
                 var graph = BuildGraph(sections);
 
                 var clearingResults = new List<ClearingResult>();
+                var unmatchedTransactions = new List<ClearingUnmatchedTransaction>();
                 var lineSummary = new Dictionary<string, decimal>();
                 var tradeSummaries = new List<object>();
 
@@ -242,6 +221,8 @@ namespace database.Controllers
                 {
                     lineSummary[line.LineName] = 0m;
                 }
+
+                var timetableMatchedTradeCount = 0;
 
                 foreach (var tx in normalTransactions)
                 {
@@ -278,10 +259,52 @@ namespace database.Controllers
 
                     if (selectedPaths.Count == 0)
                     {
+                        unmatchedTransactions.Add(CreateUnmatchedRecord(
+                            task.TaskId,
+                            tx.TransactionId,
+                            tx.CardNo,
+                            tx.EntryTime,
+                            tx.EntryStationId,
+                            tx.ExitTime,
+                            tx.ExitStationId,
+                            "NO_PATH",
+                            "进站站点与出站站点之间未找到可用路径"
+                        ));
+
                         continue;
                     }
 
+                    var timetableFilterResult = FilterPathsByPublishedTimetableWithReason(
+                        selectedPaths,
+                        tx.EntryTime,
+                        tx.ExitTime,
+                        activeTimetables,
+                        timetableDetails
+                    );
+
+                    if (timetableFilterResult.Paths.Count == 0)
+                    {
+                        unmatchedTransactions.Add(CreateUnmatchedRecord(
+                            task.TaskId,
+                            tx.TransactionId,
+                            tx.CardNo,
+                            tx.EntryTime,
+                            tx.EntryStationId,
+                            tx.ExitTime,
+                            tx.ExitStationId,
+                            timetableFilterResult.ReasonCode,
+                            timetableFilterResult.ReasonMessage
+                        ));
+
+                        continue;
+                    }
+
+                    selectedPaths = timetableFilterResult.Paths;
+                    var clearingBasis = "已发布时刻表匹配";
+                    timetableMatchedTradeCount++;
+
                     var totalPathWeight = selectedPaths.Sum(CalculatePathWeight);
+
                     if (totalPathWeight <= 0)
                     {
                         continue;
@@ -301,7 +324,10 @@ namespace database.Controllers
                         }
                         else
                         {
-                            pathAmount = Math.Round(tx.PayAmount * CalculatePathWeight(path) / totalPathWeight, 2);
+                            pathAmount = Math.Round(
+                                tx.PayAmount * CalculatePathWeight(path) / totalPathWeight,
+                                2
+                            );
                             transactionAllocated += pathAmount;
                         }
 
@@ -328,7 +354,7 @@ namespace database.Controllers
                                 ClearingAmount = allocation.Amount,
                                 PathText = pathText,
                                 TransferText = transferText,
-                                PathGroup = $"方案{pathIndex}",
+                                PathGroup = $"{clearingBasis}-方案{pathIndex}",
                                 CreatedAt = DateTime.Now
                             };
 
@@ -357,7 +383,8 @@ namespace database.Controllers
                         exitStationName = tx.ExitStationName,
                         payAmount = tx.PayAmount,
                         pathSchemeCount = selectedPaths.Count,
-                        lineAllocationCount = detailCount
+                        lineAllocationCount = detailCount,
+                        clearingBasis = clearingBasis
                     });
                 }
 
@@ -366,7 +393,12 @@ namespace database.Controllers
                     _context.ClearingResults.AddRange(clearingResults);
                 }
 
-                task.DataCount = normalTransactions.Count;
+                if (unmatchedTransactions.Any())
+                {
+                    _context.ClearingUnmatchedTransactions.AddRange(unmatchedTransactions);
+                }
+
+                task.DataCount = timetableMatchedTradeCount;
                 task.Status = "SUCCESS";
                 task.EndTime = DateTime.Now;
 
@@ -377,9 +409,11 @@ namespace database.Controllers
                     taskId = task.TaskId,
                     clearingMode = algorithmType,
                     transferCoefficient = transferCoefficient,
-                    normalTradeCount = normalTransactions.Count,
+                    normalTradeCount = timetableMatchedTradeCount,
                     exceptionTradeCount = exceptionCount,
-                    totalClearingAmount = normalTransactions.Sum(x => x.PayAmount),
+                    timetableMatchedTradeCount = timetableMatchedTradeCount,
+                    unmatchedTradeCount = unmatchedTransactions.Count,
+                    totalClearingAmount = Math.Round(clearingResults.Sum(x => x.ClearingAmount), 2),
                     summary = lineSummary
                         .OrderBy(x => x.Key)
                         .Select(x => new
@@ -403,6 +437,20 @@ namespace database.Controllers
                         .OrderBy(x => x.TransactionId)
                         .ThenBy(x => x.PathGroup)
                         .ThenBy(x => x.LineId)
+                        .ToList(),
+                    unmatchedTransactions = unmatchedTransactions
+                        .Select(x => new
+                        {
+                            x.TransactionId,
+                            x.CardNo,
+                            x.EntryTime,
+                            x.EntryStationId,
+                            x.ExitTime,
+                            x.ExitStationId,
+                            x.ReasonCode,
+                            x.ReasonMessage
+                        })
+                        .OrderBy(x => x.TransactionId)
                         .ToList()
                 });
             }
@@ -411,6 +459,7 @@ namespace database.Controllers
                 task.Status = "FAILED";
                 task.EndTime = DateTime.Now;
                 task.ErrorMessage = ex.ToString();
+
                 await _context.SaveChangesAsync();
 
                 return StatusCode(500, new
@@ -432,10 +481,7 @@ namespace database.Controllers
 
             if (latestTask == null)
             {
-                return NotFound(new
-                {
-                    message = "暂无历史清分结果。"
-                });
+                return NotFound(new { message = "暂无历史清分结果。" });
             }
 
             var shareRule = await _context.ClearingRules
@@ -493,7 +539,12 @@ namespace database.Controllers
             long startStationId,
             long endStationId)
         {
-            if (!graph.ContainsKey(startStationId) || !graph.ContainsKey(endStationId))
+            var allStations = graph.Keys
+                .Union(graph.Values.SelectMany(x => x.Select(e => e.ToStationId)))
+                .Distinct()
+                .ToList();
+
+            if (!allStations.Contains(startStationId) || !allStations.Contains(endStationId))
             {
                 return null;
             }
@@ -501,11 +552,6 @@ namespace database.Controllers
             var distances = new Dictionary<long, decimal>();
             var previous = new Dictionary<long, (long PrevStationId, long LineId, decimal DistanceKm)>();
             var visited = new HashSet<long>();
-
-            var allStations = graph.Keys
-                .Union(graph.Values.SelectMany(x => x.Select(e => e.ToStationId)))
-                .Distinct()
-                .ToList();
 
             foreach (var stationId in allStations)
             {
@@ -558,7 +604,11 @@ namespace database.Controllers
                     if (!distances.ContainsKey(edge.ToStationId) || newDistance < distances[edge.ToStationId])
                     {
                         distances[edge.ToStationId] = newDistance;
-                        previous[edge.ToStationId] = (currentStationId, edge.LineId, edge.DistanceKm);
+                        previous[edge.ToStationId] = (
+                            currentStationId,
+                            edge.LineId,
+                            edge.DistanceKm
+                        );
                     }
                 }
             }
@@ -570,8 +620,8 @@ namespace database.Controllers
 
             var stationIds = new List<long>();
             var segments = new List<PathSegment>();
-
             var cursor = endStationId;
+
             stationIds.Add(cursor);
 
             while (cursor != startStationId)
@@ -615,6 +665,7 @@ namespace database.Controllers
             int maxPaths = 12)
         {
             var shortest = FindShortestPath(graph, startStationId, endStationId);
+
             if (shortest == null)
             {
                 return new List<PathResult>();
@@ -622,7 +673,6 @@ namespace database.Controllers
 
             var maxDistance = shortest.TotalDistanceKm * 1.6m;
             var maxSegmentCount = shortest.Segments.Count + maxExtraDepth;
-
             var results = new List<PathResult>();
             var signatures = new HashSet<string>();
 
@@ -651,6 +701,7 @@ namespace database.Controllers
                 if (currentStationId == endStationId)
                 {
                     var signature = string.Join("->", stationIds);
+
                     if (signatures.Contains(signature))
                     {
                         return;
@@ -725,6 +776,260 @@ namespace database.Controllers
                 .ToList();
         }
 
+        private static List<PathResult> FilterPathsByPublishedTimetable(
+            List<PathResult> candidatePaths,
+            DateTime? entryTime,
+            DateTime? exitTime,
+            List<TrainTimetable> activeTimetables,
+            List<TrainTimetableDetail> timetableDetails)
+        {
+            if (candidatePaths.Count == 0)
+            {
+                return new List<PathResult>();
+            }
+
+            if (entryTime == null)
+            {
+                return new List<PathResult>();
+            }
+
+            if (activeTimetables.Count == 0 || timetableDetails.Count == 0)
+            {
+                return new List<PathResult>();
+            }
+
+            var result = new List<PathResult>();
+
+            foreach (var path in candidatePaths)
+            {
+                var matchResult = TryMatchPathByPublishedTimetable(
+                    path,
+                    entryTime.Value,
+                    exitTime,
+                    activeTimetables,
+                    timetableDetails
+                );
+
+                if (matchResult.IsMatched)
+                {
+                    path.TimetableMatchText = matchResult.MatchText;
+                    result.Add(path);
+                }
+            }
+
+            return result;
+        }
+
+        private static TimetablePathMatchResult TryMatchPathByPublishedTimetable(
+            PathResult path,
+            DateTime entryTime,
+            DateTime? exitTime,
+            List<TrainTimetable> activeTimetables,
+            List<TrainTimetableDetail> timetableDetails)
+        {
+            var lineGroups = SplitPathByLine(path);
+
+            if (lineGroups.Count == 0)
+            {
+                return new TimetablePathMatchResult
+                {
+                    IsMatched = false,
+                    ReasonCode = "NO_LINE_SEGMENT",
+                    MatchText = "路径无有效线路区段"
+                };
+            }
+
+            var currentTime = entryTime.TimeOfDay;
+            var matchTexts = new List<string>();
+
+            for (var i = 0; i < lineGroups.Count; i++)
+            {
+                var group = lineGroups[i];
+
+                var validTimetables = activeTimetables
+                    .Where(t =>
+                        t.LineId == group.LineId &&
+                        t.Status == 1 &&
+                        t.IsActive == 1 &&
+                        entryTime.Date >= t.EffectiveStartDate.Date &&
+                        entryTime.Date <= t.EffectiveEndDate.Date)
+                    .ToList();
+
+                if (validTimetables.Count == 0)
+                {
+                    return new TimetablePathMatchResult
+                    {
+                        IsMatched = false,
+                        ReasonCode = "NO_ACTIVE_TIMETABLE_FOR_LINE",
+                        MatchText = $"线路{group.LineId}无已发布生效时刻表"
+                    };
+                }
+
+                var timetableIds = validTimetables
+                    .Select(t => t.TimetableId)
+                    .ToHashSet();
+
+                var details = timetableDetails
+                    .Where(d => timetableIds.Contains(d.TimetableId))
+                    .ToList();
+
+                var waitMinutes = i == 0 ? FirstRideWaitMinutes : TransferWaitMinutes;
+
+                var matchedTrain = FindMatchedTrain(
+                    details,
+                    group.FromStationId,
+                    group.ToStationId,
+                    currentTime,
+                    waitMinutes
+                );
+
+                if (matchedTrain == null)
+                {
+                    return new TimetablePathMatchResult
+                    {
+                        IsMatched = false,
+                        ReasonCode = "NO_MATCHED_TRAIN",
+                        MatchText = $"线路{group.LineId}未匹配到可乘坐列车"
+                    };
+                }
+
+                matchTexts.Add(
+                    $"线路{group.LineId}-{matchedTrain.TrainNo}"
+                );
+
+                currentTime = matchedTrain.ArrivalTime
+                              ?? matchedTrain.DepartureTime
+                              ?? currentTime;
+            }
+
+            if (exitTime != null)
+            {
+                var latestAllowedExitTime = exitTime.Value.TimeOfDay.Add(
+                    TimeSpan.FromMinutes(ExitToleranceMinutes)
+                );
+
+                if (currentTime > latestAllowedExitTime)
+                {
+                    return new TimetablePathMatchResult
+                    {
+                        IsMatched = false,
+                        ReasonCode = "EXIT_TIME_TOLERANCE_EXCEEDED",
+                        MatchText = "列车到达时间晚于出站时间容差"
+                    };
+                }
+            }
+
+            return new TimetablePathMatchResult
+            {
+                IsMatched = true,
+                ReasonCode = "MATCHED",
+                MatchText = string.Join("；", matchTexts)
+            };
+        }
+
+        private static List<LinePathGroup> SplitPathByLine(PathResult path)
+        {
+            var groups = new List<LinePathGroup>();
+
+            if (path.Segments.Count == 0)
+            {
+                return groups;
+            }
+
+            var currentLineId = path.Segments[0].LineId;
+            var startStationId = path.Segments[0].FromStationId;
+            var endStationId = path.Segments[0].ToStationId;
+
+            for (var i = 1; i < path.Segments.Count; i++)
+            {
+                var segment = path.Segments[i];
+
+                if (segment.LineId == currentLineId)
+                {
+                    endStationId = segment.ToStationId;
+                }
+                else
+                {
+                    groups.Add(new LinePathGroup
+                    {
+                        LineId = currentLineId,
+                        FromStationId = startStationId,
+                        ToStationId = endStationId
+                    });
+
+                    currentLineId = segment.LineId;
+                    startStationId = segment.FromStationId;
+                    endStationId = segment.ToStationId;
+                }
+            }
+
+            groups.Add(new LinePathGroup
+            {
+                LineId = currentLineId,
+                FromStationId = startStationId,
+                ToStationId = endStationId
+            });
+
+            return groups;
+        }
+
+        private static MatchedTrainInfo? FindMatchedTrain(
+            List<TrainTimetableDetail> details,
+            long fromStationId,
+            long toStationId,
+            TimeSpan earliestDepartureTime,
+            int maxWaitMinutes)
+        {
+            var groupedByTrain = details
+                .GroupBy(d => new { d.TimetableId, d.TrainNo })
+                .OrderBy(g => g.Key.TrainNo)
+                .ToList();
+
+            foreach (var trainGroup in groupedByTrain)
+            {
+                var from = trainGroup.FirstOrDefault(d => d.StationId == fromStationId);
+                var to = trainGroup.FirstOrDefault(d => d.StationId == toStationId);
+
+                if (from == null || to == null)
+                {
+                    continue;
+                }
+
+                if (from.StationSeq >= to.StationSeq)
+                {
+                    continue;
+                }
+
+                var departureTime = from.DepartureTime ?? from.ArrivalTime;
+                var arrivalTime = to.ArrivalTime ?? to.DepartureTime;
+
+                if (departureTime == null || arrivalTime == null)
+                {
+                    continue;
+                }
+
+                if (departureTime.Value < earliestDepartureTime)
+                {
+                    continue;
+                }
+
+                if (departureTime.Value > earliestDepartureTime.Add(TimeSpan.FromMinutes(maxWaitMinutes)))
+                {
+                    continue;
+                }
+
+                return new MatchedTrainInfo
+                {
+                    TimetableId = trainGroup.Key.TimetableId,
+                    TrainNo = trainGroup.Key.TrainNo,
+                    DepartureTime = departureTime,
+                    ArrivalTime = arrivalTime
+                };
+            }
+
+            return null;
+        }
+
         private static decimal CalculatePathWeight(PathResult path)
         {
             if (path.TotalDistanceKm <= 0)
@@ -733,7 +1038,6 @@ namespace database.Controllers
             }
 
             var transferCount = path.TransferStationIds.Count;
-
             var distanceWeight = 1m / path.TotalDistanceKm;
             var transferPenalty = 1m / (1m + transferCount * 0.3m);
 
@@ -760,7 +1064,7 @@ namespace database.Controllers
 
             if (algorithmType == "shortest" && path.TransferStationIds.Count > 0 && transferCoefficient > 0)
             {
-                for (int i = 1; i < path.Segments.Count; i++)
+                for (var i = 1; i < path.Segments.Count; i++)
                 {
                     if (path.Segments[i - 1].LineId != path.Segments[i].LineId)
                     {
@@ -775,6 +1079,7 @@ namespace database.Controllers
             }
 
             var totalWeight = lineDistanceMap.Values.Sum();
+
             if (totalWeight <= 0)
             {
                 return new List<LineAllocation>();
@@ -783,9 +1088,10 @@ namespace database.Controllers
             var totalAmount = path.TotalFareAmount;
             var allocations = new List<LineAllocation>();
             decimal allocated = 0m;
+
             var lineIds = lineDistanceMap.Keys.OrderBy(x => x).ToList();
 
-            for (int i = 0; i < lineIds.Count; i++)
+            for (var i = 0; i < lineIds.Count; i++)
             {
                 var lineId = lineIds[i];
                 decimal amount;
@@ -815,7 +1121,7 @@ namespace database.Controllers
         {
             var transferStationIds = new List<long>();
 
-            for (int i = 1; i < segments.Count; i++)
+            for (var i = 1; i < segments.Count; i++)
             {
                 if (segments[i - 1].LineId != segments[i].LineId)
                 {
@@ -830,10 +1136,9 @@ namespace database.Controllers
             List<long> stationIds,
             Dictionary<long, StationInfo> stationMap)
         {
-            return string.Join(" -> ",
-                stationIds
-                    .Where(stationMap.ContainsKey)
-                    .Select(id => stationMap[id].StationName));
+            return string.Join(" -> ", stationIds
+                .Where(stationMap.ContainsKey)
+                .Select(id => stationMap[id].StationName));
         }
 
         private static string BuildTransferText(
@@ -850,58 +1155,107 @@ namespace database.Controllers
                 .Select(id => stationMap[id].StationName)) + "换乘";
         }
 
-        public class SaveClearingRulesRequest
-        {
-            public string ClearingMode { get; set; } = "shortest";
-
-            public decimal TransferCoefficient { get; set; } = 1.1m;
-        }
-
-        private class GraphEdge
-        {
-            public long ToStationId { get; set; }
-
-            public decimal DistanceKm { get; set; }
-
-            public long LineId { get; set; }
-        }
-
-        private class PathSegment
-        {
-            public long FromStationId { get; set; }
-
-            public long ToStationId { get; set; }
-
-            public long LineId { get; set; }
-
-            public decimal DistanceKm { get; set; }
-        }
-
-        private class PathResult
-        {
-            public List<long> StationIds { get; set; } = new();
-
-            public List<PathSegment> Segments { get; set; } = new();
-
-            public decimal TotalDistanceKm { get; set; }
-
-            public List<long> TransferStationIds { get; set; } = new();
-
-            public decimal TotalFareAmount { get; set; }
-        }
-
-        private class LineAllocation
-        {
-            public long LineId { get; set; }
-
-            public long OperatorId { get; set; }
-
-            public decimal Amount { get; set; }
-        }
-        private async Task<IActionResult> BuildClearingResponse(
+        private static ClearingUnmatchedTransaction CreateUnmatchedRecord(
     int taskId,
-    string algorithmType,
-    decimal transferCoefficient)
+    long transactionId,
+    string cardNo,
+    DateTime? entryTime,
+    long? entryStationId,
+    DateTime? exitTime,
+    long? exitStationId,
+    string reasonCode,
+    string reasonMessage)
+        {
+            return new ClearingUnmatchedTransaction
+            {
+                TaskId = taskId,
+                TransactionId = transactionId,
+                CardNo = cardNo,
+                EntryTime = entryTime,
+                EntryStationId = entryStationId,
+                ExitTime = exitTime,
+                ExitStationId = exitStationId,
+                ReasonCode = reasonCode,
+                ReasonMessage = reasonMessage,
+                CreatedAt = DateTime.Now
+            };
+        }
+
+        private static TimetableFilterResult FilterPathsByPublishedTimetableWithReason(
+            List<PathResult> candidatePaths,
+            DateTime? entryTime,
+            DateTime? exitTime,
+            List<TrainTimetable> activeTimetables,
+            List<TrainTimetableDetail> timetableDetails)
+        {
+            var result = new TimetableFilterResult();
+
+            if (candidatePaths.Count == 0)
+            {
+                result.ReasonCode = "NO_CANDIDATE_PATH";
+                result.ReasonMessage = "未找到候选路径";
+                return result;
+            }
+
+            if (entryTime == null)
+            {
+                result.ReasonCode = "NO_ENTRY_TIME";
+                result.ReasonMessage = "交易缺少进站时间";
+                return result;
+            }
+
+            if (activeTimetables.Count == 0)
+            {
+                result.ReasonCode = "NO_ACTIVE_TIMETABLE";
+                result.ReasonMessage = "当前没有已发布且启用的时刻表";
+                return result;
+            }
+
+            if (timetableDetails.Count == 0)
+            {
+                result.ReasonCode = "NO_TIMETABLE_DETAIL";
+                result.ReasonMessage = "已发布时刻表没有明细数据";
+                return result;
+            }
+
+            var lastReasonCode = "TIMETABLE_NOT_MATCHED";
+            var lastReasonMessage = "候选路径未匹配到已发布时刻表";
+
+            foreach (var path in candidatePaths)
+            {
+                var matchResult = TryMatchPathByPublishedTimetable(
+                    path,
+                    entryTime.Value,
+                    exitTime,
+                    activeTimetables,
+                    timetableDetails
+                );
+
+                if (matchResult.IsMatched)
+                {
+                    path.TimetableMatchText = matchResult.MatchText;
+                    result.Paths.Add(path);
+                }
+                else
+                {
+                    lastReasonCode = matchResult.ReasonCode;
+                    lastReasonMessage = matchResult.MatchText;
+                }
+            }
+
+            if (result.Paths.Count == 0)
+            {
+                result.ReasonCode = lastReasonCode;
+                result.ReasonMessage = lastReasonMessage;
+            }
+
+            return result;
+        }
+
+        private async Task<IActionResult> BuildClearingResponse(
+            int taskId,
+            string algorithmType,
+            decimal transferCoefficient)
         {
             var task = await _context.ClearingTasks
                 .AsNoTracking()
@@ -909,10 +1263,7 @@ namespace database.Controllers
 
             if (task == null)
             {
-                return NotFound(new
-                {
-                    message = "清分任务不存在。"
-                });
+                return NotFound(new { message = "清分任务不存在。" });
             }
 
             var details = await (
@@ -965,7 +1316,8 @@ namespace database.Controllers
                     x => new
                     {
                         PathSchemeCount = x.Select(d => d.PathGroup).Distinct().Count(),
-                        LineAllocationCount = x.Count()
+                        LineAllocationCount = x.Count(),
+                        ClearingBasis = "已发布时刻表匹配"
                     }
                 );
 
@@ -981,12 +1333,32 @@ namespace database.Controllers
                     : 0,
                 lineAllocationCount = detailGroups.ContainsKey(t.TransactionId)
                     ? detailGroups[t.TransactionId].LineAllocationCount
-                    : 0
+                    : 0,
+                clearingBasis = detailGroups.ContainsKey(t.TransactionId)
+                    ? detailGroups[t.TransactionId].ClearingBasis
+                    : "未知"
             }).ToList();
 
             var exceptionCount = await _context.TicketTransactions
                 .AsNoTracking()
                 .CountAsync(x => x.TransactionStatus == "EXCEPTION");
+
+            var unmatchedTransactions = await _context.ClearingUnmatchedTransactions
+                .AsNoTracking()
+                .Where(x => x.TaskId == taskId)
+                .OrderBy(x => x.TransactionId)
+                .Select(x => new
+                {
+                    x.TransactionId,
+                    x.CardNo,
+                    x.EntryTime,
+                    x.EntryStationId,
+                    x.ExitTime,
+                    x.ExitStationId,
+                    x.ReasonCode,
+                    x.ReasonMessage
+                })
+                .ToListAsync();
 
             var summary = details
                 .GroupBy(x => x.lineName)
@@ -998,18 +1370,89 @@ namespace database.Controllers
                 })
                 .ToList();
 
+            var timetableMatchedTradeCount = tradeSummaries.Count;
+
             return Ok(new
             {
                 taskId = task.TaskId,
                 clearingMode = algorithmType,
                 transferCoefficient = transferCoefficient,
-                normalTradeCount = task.DataCount,
+                normalTradeCount = timetableMatchedTradeCount,
                 exceptionTradeCount = exceptionCount,
-                totalClearingAmount = tradeSummaries.Sum(x => x.payAmount),
+                timetableMatchedTradeCount = timetableMatchedTradeCount,
+                unmatchedTradeCount = unmatchedTransactions.Count,
+                totalClearingAmount = Math.Round(details.Sum(x => x.ClearingAmount), 2),
                 summary = summary,
                 trades = tradeSummaries,
-                details = details
+                details = details,
+                unmatchedTransactions = unmatchedTransactions
             });
+        }
+
+        public class SaveClearingRulesRequest
+        {
+            public string ClearingMode { get; set; } = "shortest";
+            public decimal TransferCoefficient { get; set; } = 1.1m;
+        }
+
+        private class GraphEdge
+        {
+            public long ToStationId { get; set; }
+            public decimal DistanceKm { get; set; }
+            public long LineId { get; set; }
+        }
+
+        private class PathSegment
+        {
+            public long FromStationId { get; set; }
+            public long ToStationId { get; set; }
+            public long LineId { get; set; }
+            public decimal DistanceKm { get; set; }
+        }
+
+        private class PathResult
+        {
+            public List<long> StationIds { get; set; } = new();
+            public List<PathSegment> Segments { get; set; } = new();
+            public decimal TotalDistanceKm { get; set; }
+            public List<long> TransferStationIds { get; set; } = new();
+            public decimal TotalFareAmount { get; set; }
+            public string? TimetableMatchText { get; set; }
+        }
+
+        private class LineAllocation
+        {
+            public long LineId { get; set; }
+            public long OperatorId { get; set; }
+            public decimal Amount { get; set; }
+        }
+
+        private class LinePathGroup
+        {
+            public long LineId { get; set; }
+            public long FromStationId { get; set; }
+            public long ToStationId { get; set; }
+        }
+
+        private class MatchedTrainInfo
+        {
+            public long TimetableId { get; set; }
+            public string TrainNo { get; set; } = string.Empty;
+            public TimeSpan? DepartureTime { get; set; }
+            public TimeSpan? ArrivalTime { get; set; }
+        }
+
+        private class TimetablePathMatchResult
+        {
+            public bool IsMatched { get; set; }
+            public string ReasonCode { get; set; } = string.Empty;
+            public string MatchText { get; set; } = string.Empty;
+        }
+        private class TimetableFilterResult
+        {
+            public List<PathResult> Paths { get; set; } = new();
+            public string ReasonCode { get; set; } = "UNKNOWN";
+            public string ReasonMessage { get; set; } = "未知原因";
         }
     }
 }

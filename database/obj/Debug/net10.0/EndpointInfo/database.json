@@ -421,6 +421,16 @@
             "type": "string",
             "nullable": true
           },
+          "entryStationId": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "exitStationId": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
           "entryStationName": {
             "type": "string",
             "nullable": true
