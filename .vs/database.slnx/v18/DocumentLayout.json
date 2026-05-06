@@ -78,8 +78,7 @@
               "RelativeToolTip": "database\\Models\\ClearingUnmatchedTransaction.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAAA4wCIAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-28T13:06:29.225Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-28T13:06:29.225Z"
             },
             {
               "$type": "Document",
@@ -89,7 +88,7 @@
               "RelativeDocumentMoniker": "database\\Controllers\\ClearingController.cs",
               "ToolTip": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\Controllers\\ClearingController.cs",
               "RelativeToolTip": "database\\Controllers\\ClearingController.cs",
-              "ViewState": "AgIAAFMFAAAAAAAAAAAYwGwFAAAPAAAAAAAAAA==",
+              "ViewState": "AgIAAFMFAAAAAAAAAAAYwGYFAABBAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-24T03:27:33.502Z",
               "EditorCaption": ""
@@ -104,8 +103,7 @@
               "RelativeToolTip": "database\\Models\\ClearingRule.cs",
               "ViewState": "AgIAABYAAAAAAAAAAAAuwCQAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-24T02:44:09.686Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-24T02:44:09.686Z"
             },
             {
               "$type": "Document",
@@ -141,8 +139,7 @@
               "RelativeToolTip": "database\\Data\\MetroDbContext.cs",
               "ViewState": "AgIAAPIBAAAAAAAAAAAiwAMCAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-15T11:58:03.998Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-15T11:58:03.998Z"
             },
             {
               "$type": "Document",
@@ -154,8 +151,7 @@
               "RelativeToolTip": "database\\Controllers\\TimetablesController.cs",
               "ViewState": "AgIAAM0BAAAAAAAAAAAYwNYBAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-14T11:56:56.541Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-14T11:56:56.541Z"
             },
             {
               "$type": "Document",
@@ -167,8 +163,7 @@
               "RelativeToolTip": "database\\Models\\ClearingResult.cs",
               "ViewState": "AgIAAA4AAAAAAAAAAAAuwCIAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-24T03:11:29.12Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-24T03:11:29.12Z"
             },
             {
               "$type": "Document",
@@ -180,8 +175,7 @@
               "RelativeToolTip": "database\\Models\\ClearingTask.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-24T02:47:30.916Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-24T02:47:30.916Z"
             },
             {
               "$type": "Document",
@@ -205,8 +199,7 @@
               "RelativeToolTip": "database\\DTOs\\TransactionListItemDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-28T12:02:53.861Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-28T12:02:53.861Z"
             },
             {
               "$type": "Document",
@@ -218,8 +211,7 @@
               "RelativeToolTip": "database\\Controllers\\TransactionsController.cs",
               "ViewState": "AgIAABgAAAAAAAAAAAAiwDUAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-27T12:21:16.391Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-27T12:21:16.391Z"
             },
             {
               "$type": "Document",
