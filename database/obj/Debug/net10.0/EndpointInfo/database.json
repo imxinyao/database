@@ -82,6 +82,35 @@
         }
       }
     },
+    "/api/Lines/network": {
+      "get": {
+        "tags": [
+          "Lines"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetroNetworkDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetroNetworkDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetroNetworkDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Timetables": {
       "get": {
         "tags": [
@@ -396,6 +425,92 @@
   },
   "components": {
     "schemas": {
+      "MetroNetworkDto": {
+        "type": "object",
+        "properties": {
+          "stations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MetroStationNodeDto"
+            },
+            "nullable": true
+          },
+          "sections": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MetroSectionEdgeDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MetroSectionEdgeDto": {
+        "type": "object",
+        "properties": {
+          "sectionId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "lineId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "lineCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "lineName": {
+            "type": "string",
+            "nullable": true
+          },
+          "fromStationId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "toStationId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "distanceKm": {
+            "type": "number",
+            "format": "double"
+          },
+          "isBidirectional": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MetroStationNodeDto": {
+        "type": "object",
+        "properties": {
+          "stationId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "stationCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "stationName": {
+            "type": "string",
+            "nullable": true
+          },
+          "isTransfer": {
+            "type": "boolean"
+          },
+          "x": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "y": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
       "SaveClearingRulesRequest": {
         "type": "object",
         "properties": {

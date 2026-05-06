@@ -3,12 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|c:\\users\\administrator.desktop-1k1hc8u\\desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\controllers\\clearingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|solutionrelative:database\\controllers\\clearingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|c:\\users\\administrator.desktop-1k1hc8u\\desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\data\\metrodbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|solutionrelative:database\\data\\metrodbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|c:\\users\\administrator.desktop-1k1hc8u\\desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\controllers\\linescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|solutionrelative:database\\controllers\\linescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|c:\\users\\administrator.desktop-1k1hc8u\\desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\models\\sectioninfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|solutionrelative:database\\models\\sectioninfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|c:\\users\\administrator.desktop-1k1hc8u\\desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\models\\lineinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|solutionrelative:database\\models\\lineinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|c:\\users\\administrator.desktop-1k1hc8u\\desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\dtos\\metronetworkdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|solutionrelative:database\\dtos\\metronetworkdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|c:\\users\\administrator.desktop-1k1hc8u\\desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\models\\stationinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|solutionrelative:database\\models\\stationinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|c:\\users\\administrator.desktop-1k1hc8u\\desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\controllers\\clearingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|solutionrelative:database\\controllers\\clearingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|c:\\users\\administrator.desktop-1k1hc8u\\desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\models\\clearingunmatchedtransaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -39,10 +59,6 @@
       "RelativeMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|solutionrelative:database\\controllers\\transactionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|c:\\users\\administrator.desktop-1k1hc8u\\desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\controllers\\linescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|solutionrelative:database\\controllers\\linescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|c:\\users\\administrator.desktop-1k1hc8u\\desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\models\\traintimetabledetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5D2C7CAA-D63E-7440-65F5-3727EF6D6D5B}|database\\database.csproj|solutionrelative:database\\models\\traintimetabledetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -62,7 +78,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -71,18 +87,58 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "ClearingUnmatchedTransaction.cs",
-              "DocumentMoniker": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\Models\\ClearingUnmatchedTransaction.cs",
-              "RelativeDocumentMoniker": "database\\Models\\ClearingUnmatchedTransaction.cs",
-              "ToolTip": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\Models\\ClearingUnmatchedTransaction.cs",
-              "RelativeToolTip": "database\\Models\\ClearingUnmatchedTransaction.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAA4wCIAAAABAAAAAAAAAA==",
+              "Title": "SectionInfo.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\Models\\SectionInfo.cs",
+              "RelativeDocumentMoniker": "database\\Models\\SectionInfo.cs",
+              "ToolTip": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\Models\\SectionInfo.cs",
+              "RelativeToolTip": "database\\Models\\SectionInfo.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAuwAQAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-28T13:06:29.225Z"
+              "WhenOpened": "2026-05-06T05:21:46.866Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
+              "Title": "LineInfo.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\Models\\LineInfo.cs",
+              "RelativeDocumentMoniker": "database\\Models\\LineInfo.cs",
+              "ToolTip": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\Models\\LineInfo.cs",
+              "RelativeToolTip": "database\\Models\\LineInfo.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAuwA0AAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-06T05:21:35.663Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MetroNetworkDto.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\DTOs\\MetroNetworkDto.cs",
+              "RelativeDocumentMoniker": "database\\DTOs\\MetroNetworkDto.cs",
+              "ToolTip": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\DTOs\\MetroNetworkDto.cs",
+              "RelativeToolTip": "database\\DTOs\\MetroNetworkDto.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAA4wCoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-06T05:21:18.061Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "StationInfo.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\Models\\StationInfo.cs",
+              "RelativeDocumentMoniker": "database\\Models\\StationInfo.cs",
+              "ToolTip": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\Models\\StationInfo.cs",
+              "RelativeToolTip": "database\\Models\\StationInfo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-06T05:14:21.275Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "ClearingController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\Controllers\\ClearingController.cs",
               "RelativeDocumentMoniker": "database\\Controllers\\ClearingController.cs",
@@ -95,19 +151,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ClearingRule.cs",
-              "DocumentMoniker": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\Models\\ClearingRule.cs",
-              "RelativeDocumentMoniker": "database\\Models\\ClearingRule.cs",
-              "ToolTip": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\Models\\ClearingRule.cs",
-              "RelativeToolTip": "database\\Models\\ClearingRule.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAuwCQAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-24T02:44:09.686Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 15,
               "Title": "TrainTimetable.cs",
               "DocumentMoniker": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\Models\\TrainTimetable.cs",
               "RelativeDocumentMoniker": "database\\Models\\TrainTimetable.cs",
@@ -119,7 +163,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 16,
               "Title": "TimetableImportRequest.cs",
               "DocumentMoniker": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\DTOs\\TimetableImportRequest.cs",
               "RelativeDocumentMoniker": "database\\DTOs\\TimetableImportRequest.cs",
@@ -131,19 +175,57 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "MetroDbContext.cs",
               "DocumentMoniker": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\Data\\MetroDbContext.cs",
               "RelativeDocumentMoniker": "database\\Data\\MetroDbContext.cs",
               "ToolTip": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\Data\\MetroDbContext.cs",
               "RelativeToolTip": "database\\Data\\MetroDbContext.cs",
-              "ViewState": "AgIAAPIBAAAAAAAAAAAiwAMCAAAPAAAAAAAAAA==",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAhwA0AAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-15T11:58:03.998Z"
+              "WhenOpened": "2026-04-15T11:58:03.998Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
+              "Title": "LinesController.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\Controllers\\LinesController.cs",
+              "RelativeDocumentMoniker": "database\\Controllers\\LinesController.cs",
+              "ToolTip": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\Controllers\\LinesController.cs",
+              "RelativeToolTip": "database\\Controllers\\LinesController.cs",
+              "ViewState": "AgIAAHUAAAAAAAAAAAAgwLIAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-15T11:57:27.998Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ClearingRule.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\Models\\ClearingRule.cs",
+              "RelativeDocumentMoniker": "database\\Models\\ClearingRule.cs",
+              "ToolTip": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\Models\\ClearingRule.cs",
+              "RelativeToolTip": "database\\Models\\ClearingRule.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAuwCQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T02:44:09.686Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ClearingUnmatchedTransaction.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\Models\\ClearingUnmatchedTransaction.cs",
+              "RelativeDocumentMoniker": "database\\Models\\ClearingUnmatchedTransaction.cs",
+              "ToolTip": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\Models\\ClearingUnmatchedTransaction.cs",
+              "RelativeToolTip": "database\\Models\\ClearingUnmatchedTransaction.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAA4wCIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-28T13:06:29.225Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
               "Title": "TimetablesController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\Controllers\\TimetablesController.cs",
               "RelativeDocumentMoniker": "database\\Controllers\\TimetablesController.cs",
@@ -155,7 +237,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 9,
               "Title": "ClearingResult.cs",
               "DocumentMoniker": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\Models\\ClearingResult.cs",
               "RelativeDocumentMoniker": "database\\Models\\ClearingResult.cs",
@@ -167,7 +249,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 8,
               "Title": "ClearingTask.cs",
               "DocumentMoniker": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\Models\\ClearingTask.cs",
               "RelativeDocumentMoniker": "database\\Models\\ClearingTask.cs",
@@ -179,7 +261,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 14,
               "Title": "TrainTimetableDetail.cs",
               "DocumentMoniker": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\Models\\TrainTimetableDetail.cs",
               "RelativeDocumentMoniker": "database\\Models\\TrainTimetableDetail.cs",
@@ -191,7 +273,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 12,
               "Title": "TransactionListItemDto.cs",
               "DocumentMoniker": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\DTOs\\TransactionListItemDto.cs",
               "RelativeDocumentMoniker": "database\\DTOs\\TransactionListItemDto.cs",
@@ -203,7 +285,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 13,
               "Title": "TransactionsController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\Controllers\\TransactionsController.cs",
               "RelativeDocumentMoniker": "database\\Controllers\\TransactionsController.cs",
@@ -212,18 +294,6 @@
               "ViewState": "AgIAABgAAAAAAAAAAAAiwDUAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-27T12:21:16.391Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "LinesController.cs",
-              "DocumentMoniker": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\Controllers\\LinesController.cs",
-              "RelativeDocumentMoniker": "database\\Controllers\\LinesController.cs",
-              "ToolTip": "C:\\Users\\Administrator.DESKTOP-1K1HC8U\\Desktop\\\u7968\u52A1\u6E05\u5206\u7CFB\u7EDF\\database\\database\\Controllers\\LinesController.cs",
-              "RelativeToolTip": "database\\Controllers\\LinesController.cs",
-              "ViewState": "AgIAAGoAAAAAAAAAAAAiwIcAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-15T11:57:27.998Z"
             }
           ]
         }

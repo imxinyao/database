@@ -108,6 +108,8 @@ namespace database.Data
 
                 entity.Property(e => e.CreatedAt)
                       .HasColumnName("created_at");
+                entity.Property(e => e.XPos).HasColumnName("x_pos");
+                entity.Property(e => e.YPos).HasColumnName("y_pos");
             });
 
             modelBuilder.Entity<SectionInfo>(entity =>

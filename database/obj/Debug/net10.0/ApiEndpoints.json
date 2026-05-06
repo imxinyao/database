@@ -47,6 +47,26 @@
   },
   {
     "ContainingType": "database.Controllers.LinesController",
+    "Method": "GetMetroNetwork",
+    "RelativePath": "api/Lines/network",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "database.DTOs.MetroNetworkDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "database.Controllers.LinesController",
     "Method": "GetLineTopology",
     "RelativePath": "api/Lines/topology",
     "HttpMethod": "GET",

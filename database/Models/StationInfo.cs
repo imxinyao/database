@@ -14,5 +14,8 @@ namespace database.Models
         public bool IsTransfer { get; set; }
 
         public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public int XPos { get; set; }
+
+        public int YPos { get; set; }
     }
 }
